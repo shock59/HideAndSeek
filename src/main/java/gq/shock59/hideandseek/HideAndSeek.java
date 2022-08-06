@@ -5,7 +5,6 @@ import gq.shock59.hideandseek.commands.LeaveHidersCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import gq.shock59.hideandseek.commands.DieCommand;
 import gq.shock59.hideandseek.events.EventListeners;
 
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ public class HideAndSeek extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new EventListeners(), this);
 
-        getCommand("die").setExecutor(new DieCommand());
         getCommand("joinhiders").setExecutor(new JoinHidersCommand());
         getCommand("leavehiders").setExecutor(new LeaveHidersCommand());
     }
