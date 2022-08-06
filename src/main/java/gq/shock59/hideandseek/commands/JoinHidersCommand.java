@@ -1,6 +1,7 @@
 package gq.shock59.hideandseek.commands;
 
 import gq.shock59.hideandseek.HideAndSeek;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,10 +20,16 @@ public class JoinHidersCommand implements CommandExecutor {
             HideAndSeek plugin = HideAndSeek.getPlugin();
             ArrayList<UUID> hiders = plugin.getHiders();
 
-            hiders.add(player.getUniqueId());
-            player.sendMessage("Joined the hiders team");
+            if (!hiders.contains(player.getUniqueId())) {
 
-            plugin.setHiders(hiders);
+                hiders.add(player.getUniqueId());
+                player.sendMessage("Joined the hiders team");
+
+                plugin.setHiders(hiders);
+
+            } else {
+                player.sendMessage(ChatColor.RED + "You're already on the hiders team!");
+            }
 
         }
 
