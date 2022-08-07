@@ -6,9 +6,6 @@ authors: [ Shock59 ]
 description: Hide and seek game
 website: https://github.com/shock59/
 commands:
-  die:
-    description: Kill the player who ran the command
-    aliases: [ suicide ]
   joinhiders:
     description: Join the hiders team
   leavehiders:
