@@ -19,10 +19,17 @@ public class JoinHidersCommand implements CommandExecutor {
 
             HideAndSeek plugin = HideAndSeek.getPlugin();
             ArrayList<UUID> hiders = plugin.getHiders();
+            ArrayList<UUID> seekers = plugin.getSeekers();
 
-            if (!hiders.contains(player.getUniqueId())) {
+            UUID uuid = player.getUniqueId();
 
-                hiders.add(player.getUniqueId());
+            if (!hiders.contains(uuid)) {
+
+                hiders.add(uuid);
+                if (seekers.contains(uuid)) {
+                    seekers.remove(uuid);
+                    plugin.setSeekers(seekers);
+                }
                 player.sendMessage("Joined the hiders team");
 
                 plugin.setHiders(hiders);

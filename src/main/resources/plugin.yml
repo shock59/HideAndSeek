@@ -8,5 +8,7 @@ website: https://github.com/shock59/
 commands:
   joinhiders:
     description: Join the hiders team
-  leavehiders:
-    description: Leave the hiders team
+  joinseekers:
+    description: Join the seekers team
+  leaveteam:
+    description: Leave your team

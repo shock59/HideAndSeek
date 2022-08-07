@@ -1,7 +1,8 @@
 package gq.shock59.hideandseek;
 
 import gq.shock59.hideandseek.commands.JoinHidersCommand;
-import gq.shock59.hideandseek.commands.LeaveHidersCommand;
+import gq.shock59.hideandseek.commands.JoinSeekersCommand;
+import gq.shock59.hideandseek.commands.LeaveTeamCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,7 +14,9 @@ import java.util.UUID;
 public class HideAndSeek extends JavaPlugin {
 
     private static HideAndSeek plugin;
+
     private ArrayList<UUID> hiders = new ArrayList<>();
+    private ArrayList<UUID> seekers = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -25,7 +28,9 @@ public class HideAndSeek extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new EventListeners(), this);
 
         getCommand("joinhiders").setExecutor(new JoinHidersCommand());
-        getCommand("leavehiders").setExecutor(new LeaveHidersCommand());
+        getCommand("joinseekers").setExecutor(new JoinSeekersCommand());
+        getCommand("leaveteam").setExecutor(new LeaveTeamCommand());
+
     }
 
     @Override
@@ -40,9 +45,16 @@ public class HideAndSeek extends JavaPlugin {
     public ArrayList<UUID> getHiders() {
         return hiders;
     }
-
     public void setHiders(ArrayList<UUID> hiders) {
         this.hiders = hiders;
+    }
+
+    public ArrayList<UUID> getSeekers() {
+        return seekers;
+    }
+
+    public void setSeekers(ArrayList<UUID> seekers) {
+        this.seekers = seekers;
     }
 
 }
