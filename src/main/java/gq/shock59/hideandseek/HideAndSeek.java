@@ -7,7 +7,7 @@ import gq.shock59.hideandseek.commands.StartGameCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import gq.shock59.hideandseek.events.EventListeners;
+import gq.shock59.hideandseek.events.PlayerDamageByPlayerEvent;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -19,6 +19,9 @@ public class HideAndSeek extends JavaPlugin {
     private ArrayList<UUID> hiders = new ArrayList<>();
     private ArrayList<UUID> seekers = new ArrayList<>();
 
+    private int gameState = 0; // 0 = not playing, 1 = during countdown, 2 = after countdown but still during game
+    private int remainingHiders;
+
     @Override
     public void onEnable() {
 
@@ -26,7 +29,7 @@ public class HideAndSeek extends JavaPlugin {
 
         getLogger().info("Hello, SpigotMC!");
 
-        Bukkit.getPluginManager().registerEvents(new EventListeners(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerDamageByPlayerEvent(), this);
 
         getCommand("joinhiders").setExecutor(new JoinHidersCommand());
         getCommand("joinseekers").setExecutor(new JoinSeekersCommand());
@@ -35,6 +38,7 @@ public class HideAndSeek extends JavaPlugin {
 
     }
 
+    // Getters and setters
     @Override
     public void onDisable() {
         getLogger().info("See you again, SpigotMC!");
@@ -54,9 +58,21 @@ public class HideAndSeek extends JavaPlugin {
     public ArrayList<UUID> getSeekers() {
         return seekers;
     }
-
     public void setSeekers(ArrayList<UUID> seekers) {
         this.seekers = seekers;
     }
 
+    public int getGameState() {
+        return gameState;
+    }
+    public void setGameState(int gameState) {
+        this.gameState = gameState;
+    }
+
+    public int getRemainingHiders() {
+        return remainingHiders;
+    }
+    public void setRemainingHiders(int remainingHiders) {
+        this.remainingHiders = remainingHiders;
+    }
 }
