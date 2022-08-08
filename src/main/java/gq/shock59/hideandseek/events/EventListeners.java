@@ -12,14 +12,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class EventListeners implements Listener {
-    
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-
-        event.getPlayer().sendMessage("Welcome to the server!");
-        event.setJoinMessage(event.getPlayer().getName() + " joined the server");
-
-    }
 
     @EventHandler
     public void onEntityDamage(EntityDamageByEntityEvent event) {
@@ -28,8 +20,9 @@ public class EventListeners implements Listener {
 
             HideAndSeek plugin = HideAndSeek.getPlugin();
             ArrayList<UUID> hiders = plugin.getHiders();
+            ArrayList<UUID> seekers = plugin.getSeekers();
 
-            if (hiders.contains(victim.getUniqueId()) && !hiders.contains(attacker.getUniqueId())) {
+            if (hiders.contains(victim.getUniqueId()) && seekers.contains(attacker.getUniqueId())) {
 
                 victim.setGameMode(GameMode.SPECTATOR);
                 victim.sendMessage("You were caught by " + attacker.getName() + "!");

@@ -3,6 +3,7 @@ package gq.shock59.hideandseek;
 import gq.shock59.hideandseek.commands.JoinHidersCommand;
 import gq.shock59.hideandseek.commands.JoinSeekersCommand;
 import gq.shock59.hideandseek.commands.LeaveTeamCommand;
+import gq.shock59.hideandseek.commands.StartGameCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,6 +31,7 @@ public class HideAndSeek extends JavaPlugin {
         getCommand("joinhiders").setExecutor(new JoinHidersCommand());
         getCommand("joinseekers").setExecutor(new JoinSeekersCommand());
         getCommand("leaveteam").setExecutor(new LeaveTeamCommand());
+        getCommand("startgame").setExecutor(new StartGameCommand());
 
     }
 

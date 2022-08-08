@@ -12,3 +12,5 @@ commands:
     description: Join the seekers team
   leaveteam:
     description: Leave your team
+  startgame:
+    description: Start a game of Hide and Seek
