@@ -57,6 +57,7 @@ public class StartGameCommand implements CommandExecutor {
             }
 
             int remainingHiders = 0;
+            int onlineSeekers = 0;
             for (Player player : Bukkit.getOnlinePlayers()) {
 
                 UUID uuid = player.getUniqueId();
@@ -76,6 +77,7 @@ public class StartGameCommand implements CommandExecutor {
                     player.teleport(new Location(location.getWorld(), location.getX(), 10000, location.getZ()));
                     player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 0, false, false));
                     player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, Integer.MAX_VALUE, 10, false, false));
+                    onlineSeekers ++;
                 } else {
                     player.setGameMode(GameMode.SPECTATOR);
                     player.sendMessage(ChatColor.GOLD + "You didn't join a team, so you will be able to spectate the game.");
@@ -85,6 +87,7 @@ public class StartGameCommand implements CommandExecutor {
 
             plugin.setGameState(1);
             plugin.setRemainingHiders(remainingHiders);
+            plugin.setOnlineSeekers(onlineSeekers);
             new FinishCountdownTask(plugin).runTaskLater(plugin, 600L);
 
         } else {

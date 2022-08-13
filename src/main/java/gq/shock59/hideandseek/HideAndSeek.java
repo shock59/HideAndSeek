@@ -4,6 +4,7 @@ import gq.shock59.hideandseek.commands.JoinHidersCommand;
 import gq.shock59.hideandseek.commands.JoinSeekersCommand;
 import gq.shock59.hideandseek.commands.LeaveTeamCommand;
 import gq.shock59.hideandseek.commands.StartGameCommand;
+import gq.shock59.hideandseek.events.PlayerQuitEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,6 +22,7 @@ public class HideAndSeek extends JavaPlugin {
 
     private int gameState = 0; // 0 = not playing, 1 = during countdown, 2 = after countdown but still during game
     private int remainingHiders;
+    private int onlineSeekers;
 
     @Override
     public void onEnable() {
@@ -29,8 +31,11 @@ public class HideAndSeek extends JavaPlugin {
 
         getLogger().info("Hello, SpigotMC!");
 
+        // Event listeners
         Bukkit.getPluginManager().registerEvents(new PlayerDamageByPlayerEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerQuitEvent(), this);
 
+        // Commands
         getCommand("joinhiders").setExecutor(new JoinHidersCommand());
         getCommand("joinseekers").setExecutor(new JoinSeekersCommand());
         getCommand("leaveteam").setExecutor(new LeaveTeamCommand());
@@ -74,5 +79,12 @@ public class HideAndSeek extends JavaPlugin {
     }
     public void setRemainingHiders(int remainingHiders) {
         this.remainingHiders = remainingHiders;
+    }
+
+    public int getOnlineSeekers() {
+        return onlineSeekers;
+    }
+    public void setOnlineSeekers(int onlineSeekers) {
+        this.onlineSeekers = onlineSeekers;
     }
 }
