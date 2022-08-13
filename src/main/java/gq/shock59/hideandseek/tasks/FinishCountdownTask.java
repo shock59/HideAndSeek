@@ -44,6 +44,7 @@ public class FinishCountdownTask extends BukkitRunnable {
 
             player.removePotionEffect(PotionEffectType.BLINDNESS);
             player.removePotionEffect(PotionEffectType.INVISIBILITY);
+            player.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, Integer.MAX_VALUE, 0, false, false));
 
             Location location = player.getLocation();
             int highest = location.getWorld().getHighestBlockAt(location.getBlockX(), location.getBlockZ()).getY() + 1;
