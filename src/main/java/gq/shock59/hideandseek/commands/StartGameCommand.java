@@ -67,11 +67,11 @@ public class StartGameCommand implements CommandExecutor {
                 player.sendMessage(ChatColor.BOLD + "" + ChatColor.GOLD + "Seekers: " + ChatColor.RESET + "" + ChatColor.YELLOW + seekerString);
 
                 if (hiders.contains(uuid)) {
-                    player.setGameMode(GameMode.SURVIVAL);
+                    player.setGameMode(GameMode.ADVENTURE);
                     player.sendMessage(ChatColor.GOLD + "You have 30 seconds to hide from the seekers!");
                     remainingHiders ++;
                 } else if (seekers.contains(uuid)) {
-                    player.setGameMode(GameMode.SURVIVAL);
+                    player.setGameMode(GameMode.ADVENTURE);
                     player.sendMessage(ChatColor.GOLD + "In 30 seconds, you will be able to search for the hiders.");
                     Location location = player.getLocation();
                     player.teleport(new Location(location.getWorld(), location.getX(), 10000, location.getZ()));
